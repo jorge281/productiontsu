@@ -4,8 +4,8 @@ import type { NextRequest } from 'next/server';
 // This function can be marked `async` if using `await` inside
 export function middleware(request: NextRequest) {
   
-  return NextResponse.next()
-  /*
+  //return NextResponse.next()
+  
   //cookie con el token
   const token = request.cookies.get('tokenLogin');
 
@@ -24,6 +24,6 @@ export function middleware(request: NextRequest) {
     }else{
      return NextResponse.next()
     }
-  }  */ 
+  }  
 }
  

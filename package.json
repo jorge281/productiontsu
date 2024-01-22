@@ -2,7 +2,6 @@
   "name": "product",
   "version": "0.1.0",
   "private": true,
-  "homepage": "http://207.246.82.178:3000/",
   "scripts": {
     "dev": "next dev",
     "build": "next build",
