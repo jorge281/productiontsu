@@ -65,14 +65,14 @@ export default function RootLayout({
         ) : (
           <div id="content">{children}</div>
         )}
-        <script src="/vendor/libs/jquery/jquery.js"></script>
-        <script src="/vendor/libs/popper/popper.js"></script>
-        <script src="/vendor/js/bootstrap.js"></script>
-        <script src="/vendor/libs/perfect-scrollbar/perfect-scrollbar.js"></script>
-        <script src="/vendor/js/menu.js"></script>
-        <script src="/vendor/js/helpers.js"></script>
+        <script src="/vendor/libs/jquery/jquery.js" async></script>
+        <script src="/vendor/libs/popper/popper.js" async></script>
+        <script src="/vendor/js/bootstrap.js" async></script>
+        <script src="/vendor/libs/perfect-scrollbar/perfect-scrollbar.js" async></script>
+        <script src="/vendor/js/menu.js" async></script>
+        <script src="/vendor/js/helpers.js" async></script>
 
-        <script src="/js/main.js"></script>
+        <script src="/js/main.js" async></script>
       </body>
 
       
