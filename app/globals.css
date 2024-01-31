@@ -25,3 +25,54 @@ body {
     )
     rgb(var(--background-start-rgb));
 }
+
+
+/*loader*/
+
+body {
+  background: #e0e0e0 !important;
+  padding: 0!important;
+  margin: 0!important;
+  height: 100vh;
+}
+
+@keyframes progress-bar {
+  0% { left: -5vw; }
+  100% { left: 100%;}
+}
+
+#loader {
+  max-width: 128px;
+  position: relative;
+  margin: 0 auto;
+  top: 50%;
+  transform: translateY(-50%);
+  
+  #logo {
+      width: 100%;
+      margin: 0 auto;
+      padding-bottom: 35px;
+  }
+  #progressbar {
+      background-color: #222d32;
+      height: 3px;
+      border-radius: 30px;
+      position: relative;
+      top: 50%;
+      left: 50%;
+      transform: translate(-50%);
+      overflow: hidden;
+
+      &::before {
+          width: 5vw;
+          position:relative;
+          left: -3vw;
+          background-color: #b5b9bb;
+          content: ' ';
+          display: block;
+          height: 3px;
+          border-radius: 30px;
+          animation: 1.5s progress-bar .5s infinite  alternate ease-in-out;
+      }
+  }
+}

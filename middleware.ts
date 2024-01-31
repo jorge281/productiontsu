@@ -9,21 +9,40 @@ export function middleware(request: NextRequest) {
   //cookie con el token
   const token = request.cookies.get('tokenLogin');
 
-  //esta en login
-  if(request.nextUrl.pathname == '/login'){
-    //no esta logeado
-    if(token == undefined){
-      return NextResponse.next()
-    }else{
-      return NextResponse.redirect(new URL('/', request.url))
-    }
+  //archivos css
+  if(request.nextUrl.pathname.includes('_next')){
+    return NextResponse.next()
+  }
+  //imagenes
+  else if(request.nextUrl.pathname.includes('/img/')){
+    return NextResponse.next()
+  }
+  //imagenes
+  else if(request.nextUrl.pathname.includes('/js/')){
+    return NextResponse.next()
+  }
+  //imagenes
+  else if(request.nextUrl.pathname.includes('/vendor/')){
+    return NextResponse.next()
   }else{
-    //no esta logeado
-    if(token == undefined){
-      return NextResponse.redirect(new URL('/login', request.url))
+    //esta en login
+    if(request.nextUrl.pathname == '/login'){
+      //no esta logeado
+      if(token == undefined){
+        return NextResponse.next()
+      }else{
+        return NextResponse.redirect(new URL('/', request.url))
+      }
     }else{
-     return NextResponse.next()
-    }
-  }  
+      //no esta logeado
+      if(token == undefined){
+        return NextResponse.redirect(new URL('/login', request.url))
+      }else{
+      return NextResponse.next()
+      }
+    }  
+  
+  }
+
 }
  
