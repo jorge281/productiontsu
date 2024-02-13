@@ -1,7 +1,9 @@
 "use client";
 
-import React, { useEffect, useState } from 'react';
+import React, { use, useEffect, useState } from 'react';
 
+import Cookies from 'js-cookie';
+import jwt from 'jsonwebtoken';
 import type { Metadata } from 'next'
 import { Inter } from 'next/font/google'
 import './globals.css'
@@ -11,8 +13,9 @@ import '../public/vendor/css/theme-default.css'
 import '../public/css/demo.css'
 import '../public/vendor/libs/perfect-scrollbar/perfect-scrollbar.css'
 import '../public/vendor/css/pages/page-auth.css'
+import Navbar from './navbar.js';
+
 //javscript
-//import '../public/vendor/js/helpers.js'
 import '../public/js/config.js'
 
 import Image from 'next/image'
@@ -26,10 +29,15 @@ export default function RootLayout({
 }: {
   children: React.ReactNode
 }) {
-
   const [isLoading, setIsLoading] = useState(true);
+  const [isLogin, setLogin] = useState(false);
   
   useEffect(() => {
+    
+    const token = Cookies.get('tokenLogin');
+    if(token == undefined){
+      setLogin(true);
+    }
     // Simulating a delay for the loader (you can replace this with your actual loading logic)
     const loadingTimeout = setTimeout(() => {
       setIsLoading(false);
@@ -42,7 +50,11 @@ export default function RootLayout({
   }, []);
 
   return (
-    <html lang="en">
+    <html lang="en"
+    className="light-style layout-menu-fixed"
+    dir="ltr"
+    data-theme="theme-default"
+    data-template="vertical-menu-template-free">
       <head>
         
       </head>
@@ -63,14 +75,23 @@ export default function RootLayout({
             <div id="progressbar"></div>
           </div>
         ) : (
-          <div id="content">{children}</div>
+          <div id="content">
+            {isLogin ? (
+              children
+            ):(
+              <Navbar contenido={children}></Navbar>
+            )}
+            
+          </div>
         )}
         <script src="/vendor/libs/jquery/jquery.js" async></script>
         <script src="/vendor/libs/popper/popper.js" async></script>
         <script src="/vendor/js/bootstrap.js" async></script>
         <script src="/vendor/libs/perfect-scrollbar/perfect-scrollbar.js" async></script>
         <script src="/vendor/js/menu.js" async></script>
-        <script src="/vendor/js/helpers.js" async></script>
+        <script src="/vendor/js/helpers.js"></script>
+
+        <script src="/vendor/libs/apex-charts/apexcharts.js"></script>
 
         <script src="/js/main.js" async></script>
       </body>
