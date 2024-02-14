@@ -173,7 +173,14 @@ const Navbar = ({ contenido }) => {
                         <div className="d-flex">
                           <div className="flex-shrink-0 me-3">
                             <div className="avatar avatar-online">
-                              <img src="/img/perfil.jpg" className="w-px-40 h-auto rounded-circle" />
+                              <Image
+                                src="/img/perfil.jpg"
+                                alt="Logo"
+                                className='w-px-40 h-auto rounded-circle'
+                                width={100}
+                                height={100}
+                                priority
+                              />
                             </div>
                           </div>
                           <div className="flex-grow-1">
