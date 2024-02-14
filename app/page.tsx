@@ -28,10 +28,13 @@ export default function Home() {
                         <div className="card-body">
                           <div className="card-title d-flex align-items-start justify-content-between">
                             <div className="avatar flex-shrink-0">
-                              <img
+                              <Image
                                 src="icons/unicons/chart-success.png"
-                                alt="chart success"
-                                className="rounded"
+                                alt="Logo"
+                                className='rounded'
+                                width={100}
+                                height={100}
+                                priority
                               />
                             </div>
                             <div className="dropdown">
