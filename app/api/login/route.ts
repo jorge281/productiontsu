@@ -4,7 +4,11 @@ import { cookies } from 'next/headers'
 import axios from 'axios';
 import { NextApiRequest, NextApiResponse } from 'next';
 
-export async function POST(req: NextApiRequest, res: NextApiResponse) {
+type ResponseData = {
+	message: string
+  }
+  
+export async function POST(req: NextApiRequest,res: NextApiResponse<ResponseData>) {
 	// Leer el cuerpo de la solicitud
     const chunks = [];
     for await (const chunk of req.body) {
