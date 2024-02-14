@@ -4,13 +4,76 @@ import { cookies } from 'next/headers'
 import axios from 'axios';
 import type { NextApiRequest, NextApiResponse } from 'next';
 
-export default async function handler(
-	req: NextApiRequest,
-	res: NextApiResponse
-) {
-	// Tu lógica de manejo de la ruta aquí
-	if (req.method === 'POST') {
-		// Leer el cuerpo de la solicitud
+
+export async function POST(request: Request) {
+
+	var dataRespuesta = {
+		flag        : '-1',
+		message     : 'Error en el servidor',
+		background  : '',
+		bordercolor : ''
+	}
+	
+	if(request.body != null){
+		const chunks: Uint8Array[] = [];
+
+		const reader = request.body.getReader();
+
+		try {
+			while (true) {
+				const { done, value } = await reader.read();
+
+				if (done) {
+				break;
+				}
+
+				chunks.push(value);
+			}
+
+			// Combine the chunks into a single Uint8Array
+			const combinedBuffer = new Uint8Array(chunks.reduce((acc, chunk) => [...acc, ...Array.from(chunk)], []));
+
+
+			// If you want to convert the Uint8Array to a string, you can use TextDecoder
+			const text = JSON.parse(new TextDecoder().decode(combinedBuffer));
+			// Combinar los chunks en un Buffer o String según sea necesario
+			const datosDeLogin = {
+				usuario: text.usuario,
+				password: text.password
+			};
+			
+			
+	
+			const responseServer = await axios.post(process.env.ENDPOINT_API+'/authentication/login',{params: datosDeLogin});
+			
+			if(responseServer.data.flag == 3){
+					
+				// Manejar la respuesta exitosa aquí
+				const serialized = serialize('tokenLogin',responseServer.data.token, {
+					httpOnly: true,
+					secure: process.env.NODE_ENV == 'production',
+					sameSite: 'none',
+					maxAge: 1000 * 60 * 60 * 24 * 30,
+					path: '/'
+				})
+			
+				cookies().set('tokenLogin', serialized);
+				dataRespuesta['flag'] = 3;
+				return Response.json(dataRespuesta);
+			}else{
+				dataRespuesta['flag'] = responseServer.data.flag
+				dataRespuesta['message'] = responseServer.data.message
+				dataRespuesta['background'] = responseServer.data.background
+				dataRespuesta['bordercolor'] = responseServer.data.bordercolor
+				return Response.json(dataRespuesta);
+			}
+		} finally {
+			return Response.json(dataRespuesta);
+		}
+	}
+}
+
+		/*// Leer el cuerpo de la solicitud
 		const chunks = [];
 		for await (const chunk of req.body) {
 		chunks.push(chunk);
@@ -59,7 +122,8 @@ export default async function handler(
 		}
 
 		
-		return Response.json(dataRespuesta);
-	}
-}
+		return Response.json(dataRespuesta);*/
+//	}
+//}
 
+//export { handler as GET, handler as POST };
