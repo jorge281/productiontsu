@@ -5,7 +5,7 @@ import axios from 'axios';
 import { NextApiRequest, NextApiResponse } from 'next';
 
 
-const handler = async (req: NextApiRequest,res: NextApiResponse) {
+const handler = async (req: NextApiRequest,res: NextApiResponse)=>{
 	// Tu lógica de manejo de la ruta aquí
 	if (req.method === 'POST') {
 		// Leer el cuerpo de la solicitud
