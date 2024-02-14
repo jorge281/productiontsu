@@ -89,9 +89,9 @@ export default function RootLayout({
         <script src="/vendor/js/bootstrap.js" async></script>
         <script src="/vendor/libs/perfect-scrollbar/perfect-scrollbar.js" async></script>
         <script src="/vendor/js/menu.js" async></script>
-        <script src="/vendor/js/helpers.js"></script>
+        <script src="/vendor/js/helpers.js" async></script>
 
-        <script src="/vendor/libs/apex-charts/apexcharts.js"></script>
+        <script src="/vendor/libs/apex-charts/apexcharts.js" async></script>
 
         <script src="/js/main.js" async></script>
       </body>
