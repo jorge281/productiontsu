@@ -4,28 +4,10 @@ import { cookies } from 'next/headers'
 import axios from 'axios';
 import { NextApiRequest, NextApiResponse } from 'next';
 
-export async function POST(request: NextApiRequest, res: NextApiResponse) {
-  	
-  	/*const token = jwt.sign({
-		exp: Math.floor((Date.now()/1000)+ (60 *60 * 24 * 30 )),
-		id: 1,
-		name: "prueba"
-	},'secretTSU')
-
-	//tokenLogin
-	const serialized = serialize('tokenLogin',token, {
-		httpOnly: true,
-		secure: process.env.NODE_ENV == 'production',
-		sameSite: 'none',
-		maxAge: 1000 * 60 * 60 * 24 * 30,
-		path: '/'
-	})
-
-	cookies().set('tokenLogin', serialized);*/
-
+export async function POST(req: NextApiRequest, res: NextApiResponse) {
 	// Leer el cuerpo de la solicitud
     const chunks = [];
-    for await (const chunk of request.body) {
+    for await (const chunk of req.body) {
       chunks.push(chunk);
     }
 
