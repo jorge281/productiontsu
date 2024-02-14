@@ -157,7 +157,14 @@ const Navbar = ({ contenido }) => {
                 <li className="nav-item navbar-dropdown dropdown-user dropdown">
                   <a className="nav-link dropdown-toggle hide-arrow" href="" data-bs-toggle="dropdown">
                     <div className="avatar avatar-online">
-                      <img src="/img/perfil.jpg" className="w-px-40 h-auto rounded-circle" />
+                      <Image
+                        src="/img/perfil.jpg"
+                        alt="Logo"
+                        className='w-px-40 h-auto rounded-circle'
+                        width={100}
+                        height={100}
+                        priority
+                      />
                     </div>
                   </a>
                   <ul className="dropdown-menu dropdown-menu-end">
