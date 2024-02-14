@@ -72,7 +72,7 @@ export async function POST(request: Request) {
 				})
 			
 				cookies().set('tokenLogin', serialized);
-				dataRespuesta['flag'] = 3;
+				dataRespuesta['flag'] = '3';
 				return Response.json(dataRespuesta);
 			}else{
 				dataRespuesta['flag'] = responseServer.data.flag
