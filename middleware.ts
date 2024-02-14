@@ -21,6 +21,10 @@ export function middleware(request: NextRequest) {
   else if(request.nextUrl.pathname.includes('/js/')){
     return NextResponse.next()
   }
+  //api
+  else if(request.nextUrl.pathname.includes('/api/')){
+    return NextResponse.next()
+  }
   //imagenes
   else if(request.nextUrl.pathname.includes('/vendor/')){
     return NextResponse.next()
