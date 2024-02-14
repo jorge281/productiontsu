@@ -8,7 +8,7 @@ type ResponseData = {
 	message: string
   }
 
-export default async function handler(req: NextApiRequest,res: NextApiResponse<ResponseData>) {
+  const handler = async (req: NextApiRequest,res: NextApiResponse<ResponseData>) {
 	// Tu lógica de manejo de la ruta aquí
 	if (req.method === 'POST') {
 		// Leer el cuerpo de la solicitud
@@ -63,3 +63,6 @@ export default async function handler(req: NextApiRequest,res: NextApiResponse<R
 		return Response.json(dataRespuesta);
 	}
 }
+
+
+export default handler;
