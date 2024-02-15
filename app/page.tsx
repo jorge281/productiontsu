@@ -29,7 +29,7 @@ export default function Home() {
                           <div className="card-title d-flex align-items-start justify-content-between">
                             <div className="avatar flex-shrink-0">
                               <Image
-                                src="icons/unicons/chart-success.png"
+                                src="/icons/unicons/chart-success.png"
                                 alt="Logo"
                                 className='rounded'
                                 width={100}
