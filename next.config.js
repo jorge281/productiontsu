@@ -2,16 +2,10 @@
 const nextConfig = {
 	//output: 'export'
 	env: {
-		ENDPOINT_API: 'http://5.161.211.8:88'
+		ENDPOINT_API: 'https://4c5d-186-86-52-160.ngrok-free.app'
 	},
 	images: {
-	    remotePatterns: [
-	      {
-	        protocol: 'http',
-	        hostname: 'localhost',
-	        port: '3005',
-	      },
-	    ],
+	    domains: ['4c5d-186-86-52-160.ngrok-free.app','pps.whatsapp.net'],
 	}
 }
 

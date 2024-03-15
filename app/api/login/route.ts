@@ -43,12 +43,8 @@ export async function POST(request: Request) {
 				offset += chunk.length;
 			});
 
-			// Now you can work with the combinedBuffer
-			console.log(combinedBuffer);
-
 			// If you want to convert the Uint8Array to a string, you can use TextDecoder
 			const text = JSON.parse(new TextDecoder().decode(combinedBuffer));
-			console.log(text);
 			//const text = JSON.parse(new TextDecoder().decode(combinedBuffer));
 			// Combinar los chunks en un Buffer o String según sea necesario
 			const datosDeLogin = {

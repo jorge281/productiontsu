@@ -9,12 +9,16 @@ import jwt from 'jsonwebtoken';
 const Navbar = ({ contenido }) => {
 
   const [isLoading, setIsLoading] = useState(true);
+  const [usuario, setUsuario] = useState({ 
+		nombre : '',
+    perfil : '',
+    foto   : ''
+	});
   
 
   useEffect(() => {
     // Obtener el valor de una cookie
     const token = Cookies.get('tokenLogin');
-    //const decodedToken = jwt.verify(token, 'TSU-CRMAP82');
     if(token != undefined){
       const jwt = token.split('=')[1];
 
@@ -31,8 +35,15 @@ const Navbar = ({ contenido }) => {
         signature
       };
 
-      console.log(decodedToken);
-      //const decodedToken = jwt.verify("eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJ1c2VyIjoxLCJub21icmUiOiJKb3JnZSBMdWlzIENhc3RyaWxsb24iLCJwZXJmaWwiOiJBZG1pbiIsImZvdG8iOiJpbWcvdXNlci5wbmciLCJpYXQiOjE3MDc4NTc2MjQsImV4cCI6MTcwNzg2MTIyNH0.rSkL1zgse176OqR_Dx2jI4Xn9SrFVAB81r_fNH3ji-w", 'TSU-CRMAP82');
+      const palabras = decodedToken.payload.nombre.split(' ');
+      const primerNombre = palabras[0];
+			const primerApellido = palabras.length > 1 ? palabras[1] : '';
+
+     setUsuario({
+        nombre : primerNombre+' '+primerApellido,
+        perfil : decodedToken.payload.perfil,
+        foto   : process.env.ENDPOINT_API+'/static/fotoUser/perfil.jpg'
+      });
     }
   },[])
 
@@ -60,52 +71,24 @@ const Navbar = ({ contenido }) => {
 
           <ul className="menu-inner py-1">
             <li className="menu-item active">
-              <a href="index.html" className="menu-link">
+              <a href="/" className="menu-link">
                 <i className="menu-icon tf-icons bx bx-home-circle"></i>
                 <div data-i18n="Analytics">Dashboard</div>
               </a>
             </li>
 
             <li className="menu-item">
-              <a href="" className="menu-link menu-toggle">
-                <i className="menu-icon tf-icons bx bx-layout"></i>
-                <div data-i18n="Layouts">Layouts</div>
+              <a href="/CRM" className="menu-link">
+                <i className="menu-icon tf-icons bx bxl-whatsapp"></i>
+                <div data-i18n="Analytics">CRM</div>
               </a>
-
-              <ul className="menu-sub">
-                <li className="menu-item">
-                  <a href="layouts-without-menu.html" className="menu-link">
-                    <div data-i18n="Without menu">Without menu</div>
-                  </a>
-                </li>
-                <li className="menu-item">
-                  <a href="layouts-without-navbar.html" className="menu-link">
-                    <div data-i18n="Without navbar">Without navbar</div>
-                  </a>
-                </li>
-                <li className="menu-item">
-                  <a href="layouts-container.html" className="menu-link">
-                    <div data-i18n="Container">Container</div>
-                  </a>
-                </li>
-                <li className="menu-item">
-                  <a href="layouts-fluid.html" className="menu-link">
-                    <div data-i18n="Fluid">Fluid</div>
-                  </a>
-                </li>
-                <li className="menu-item">
-                  <a href="layouts-blank.html" className="menu-link">
-                    <div data-i18n="Blank">Blank</div>
-                  </a>
-                </li>
-              </ul>
             </li>
 
-            <li className="menu-header small text-uppercase">
+            <li className="menu-header small text-uppercase" style={{display:'none'}}>
               <span className="menu-header-text">Pages</span>
             </li>
 
-            <li className="menu-item">
+            <li className="menu-item" style={{display:'none'}}> 
               <a href="" className="menu-link menu-toggle">
                 <i className="menu-icon tf-icons bx bx-dock-top"></i>
                 <div data-i18n="Account Settings">Account Settings</div>
@@ -158,7 +141,7 @@ const Navbar = ({ contenido }) => {
                   <a className="nav-link dropdown-toggle hide-arrow" href="" data-bs-toggle="dropdown">
                     <div className="avatar avatar-online">
                       <Image
-                        src="/img/perfil.jpg"
+                        src={usuario.foto}
                         alt="Logo"
                         className='w-px-40 h-auto rounded-circle'
                         width={100}
@@ -174,7 +157,7 @@ const Navbar = ({ contenido }) => {
                           <div className="flex-shrink-0 me-3">
                             <div className="avatar avatar-online">
                               <Image
-                                src="/img/perfil.jpg"
+                                src={usuario.foto}
                                 alt="Logo"
                                 className='w-px-40 h-auto rounded-circle'
                                 width={100}
@@ -184,8 +167,8 @@ const Navbar = ({ contenido }) => {
                             </div>
                           </div>
                           <div className="flex-grow-1">
-                            <span className="fw-semibold d-block">John Doe</span>
-                            <small className="text-muted">Admin</small>
+                            <span className="fw-semibold d-block">{usuario.nombre}</span>
+                            <small className="text-muted">{usuario.perfil}</small>
                           </div>
                         </div>
                       </a>
@@ -194,24 +177,15 @@ const Navbar = ({ contenido }) => {
                       <div className="dropdown-divider"></div>
                     </li>
                     <li>
-                      <a className="dropdown-item" href="#">
+                      <a className="dropdown-item" href="/user/perfil">
                         <i className="bx bx-user me-2"></i>
-                        <span className="align-middle">My Profile</span>
+                        <span className="align-middle">Perfil</span>
                       </a>
                     </li>
                     <li>
-                      <a className="dropdown-item" href="#">
+                      <a className="dropdown-item" href="/user/seguridad">
                         <i className="bx bx-cog me-2"></i>
-                        <span className="align-middle">Settings</span>
-                      </a>
-                    </li>
-                    <li>
-                      <a className="dropdown-item" href="#">
-                        <span className="d-flex align-items-center align-middle">
-                          <i className="flex-shrink-0 bx bx-credit-card me-2"></i>
-                          <span className="flex-grow-1 align-middle">Billing</span>
-                          <span className="flex-shrink-0 badge badge-center rounded-pill bg-danger w-px-20 h-px-20">4</span>
-                        </span>
+                        <span className="align-middle">Seguridad</span>
                       </a>
                     </li>
                     <li>
