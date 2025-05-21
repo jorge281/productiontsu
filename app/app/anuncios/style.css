@@ -1,0 +1,56 @@
+/* The heart of the matter */
+.testimonial-group > .row {
+    overflow-x: auto;
+    white-space: nowrap;
+}
+
+.testimonial-group > .row > .col-xs-4 {
+   display: inline-block;
+   float: none;
+}
+
+.btn-primary{
+    background: #566a7f;
+    border: 0px;
+}
+
+.btn-primary:focus{
+    background: #566a7f !important;
+}
+
+.scrolling-wrapper{
+    padding: 0px 0px 10px 0px;
+	overflow-x: auto;
+    overflow-y: hidden;
+}
+
+.card-block{
+	height: 30px;
+}
+
+.scrolling-wrapper::-webkit-scrollbar {
+    -webkit-appearance: none;
+}
+
+.scrolling-wrapper::-webkit-scrollbar:vertical {
+    width:10px;
+}
+
+.scrolling-wrapper::-webkit-scrollbar-button:increment,.scrolling-wrapper::-webkit-scrollbar-button {
+    display: none;
+} 
+
+
+.scrolling-wrapper::-webkit-scrollbar:horizontal {
+    height: 10px;
+}
+
+.scrolling-wrapper::-webkit-scrollbar-thumb {
+    background-color: #797979;
+    border-radius: 20px;
+    border: 2px solid #f1f2f3;
+}
+
+.scrolling-wrapper::-webkit-scrollbar-track {
+    border-radius: 10px;  
+}

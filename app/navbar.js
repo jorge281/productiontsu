@@ -10,10 +10,11 @@ const Navbar = ({ contenido }) => {
 
   const [isLoading, setIsLoading] = useState(true);
   const [usuario, setUsuario] = useState({ 
-		nombre : '',
+    nombre : '',
     perfil : '',
     foto   : ''
-	});
+  });
+  const [loaded2, setLoaded2] = useState(false);
   
 
   useEffect(() => {
@@ -37,20 +38,23 @@ const Navbar = ({ contenido }) => {
 
       const palabras = decodedToken.payload.nombre.split(' ');
       const primerNombre = palabras[0];
-			const primerApellido = palabras.length > 1 ? palabras[1] : '';
+      const primerApellido = palabras.length > 1 ? palabras[1] : '';
 
      setUsuario({
         nombre : primerNombre+' '+primerApellido,
         perfil : decodedToken.payload.perfil,
-        foto   : process.env.ENDPOINT_API+'/static/fotoUser/perfil.jpg'
+        foto   : process.env.ENDPOINT_IMG+decodedToken.payload.foto
       });
     }
+   
   },[])
 
   return (
+    <>
+    
     <div className="layout-wrapper layout-content-navbar">
       <div className="layout-container">
-        <aside id="layout-menu" className="layout-menu menu-vertical menu bg-menu-theme">
+        <aside id="layout-menu" style={{display:'none'}} className="opacityOpen layout-menu menu-vertical menu bg-menu-theme">
           <div className="app-brand demo">
             <a href="/" className="app-brand-link">
               <Image
@@ -59,7 +63,7 @@ const Navbar = ({ contenido }) => {
                 style={{ width: '70%', height: 'auto', margin:'auto' }}
                 width={100}
                 height={100}
-                priority
+                
               />
             </a>
             <a onClick={cerrarMenu} className="layout-menu-toggle menu-link text-large ms-auto d-block d-xl-none">
@@ -70,14 +74,14 @@ const Navbar = ({ contenido }) => {
           <div className="menu-inner-shadow"></div>
 
           <ul className="menu-inner py-1">
-            <li className="menu-item active">
+            <li className="menu-item active" style={{display:'none'}}>
               <a href="/" className="menu-link">
                 <i className="menu-icon tf-icons bx bx-home-circle"></i>
                 <div data-i18n="Analytics">Dashboard</div>
               </a>
             </li>
 
-            <li className="menu-item">
+            <li className="menu-item active">
               <a href="/CRM" className="menu-link">
                 <i className="menu-icon tf-icons bx bxl-whatsapp"></i>
                 <div data-i18n="Analytics">CRM</div>
@@ -116,10 +120,11 @@ const Navbar = ({ contenido }) => {
 
         </aside>
 
-        <div className="layout-page">
+        <div className="layout-page" style={{paddingLeft:'0px'}}>
           <nav
-            className="layout-navbar container-xxl navbar navbar-expand-xl navbar-detached align-items-center bg-navbar-theme"
+            className="opacityOpen layout-navbar container-xxl navbar navbar-expand-xl navbar-detached align-items-center bg-navbar-theme"
             id="layout-navbar"
+            style={{height:'60px'}}
           >
             <div className="layout-menu-toggle navbar-nav align-items-xl-center me-3 me-xl-0 d-xl-none">
               <a className="nav-item nav-link px-0 me-xl-4" onClick={abrirMenu}>
@@ -129,7 +134,6 @@ const Navbar = ({ contenido }) => {
 
             <div className="navbar-nav-right d-flex align-items-center" id="navbar-collapse">
               <div className="navbar-nav align-items-center">
-                
               </div>
 
               <ul className="navbar-nav flex-row align-items-center ms-auto">
@@ -140,14 +144,14 @@ const Navbar = ({ contenido }) => {
                 <li className="nav-item navbar-dropdown dropdown-user dropdown">
                   <a className="nav-link dropdown-toggle hide-arrow" href="" data-bs-toggle="dropdown">
                     <div className="avatar avatar-online">
-                      <Image
+                      <img 
                         src={usuario.foto}
                         alt="Logo"
                         className='w-px-40 h-auto rounded-circle'
                         width={100}
                         height={100}
-                        priority
-                      />
+                      >
+                      </img>
                     </div>
                   </a>
                   <ul className="dropdown-menu dropdown-menu-end">
@@ -156,14 +160,14 @@ const Navbar = ({ contenido }) => {
                         <div className="d-flex">
                           <div className="flex-shrink-0 me-3">
                             <div className="avatar avatar-online">
-                              <Image
+                              <img 
                                 src={usuario.foto}
                                 alt="Logo"
                                 className='w-px-40 h-auto rounded-circle'
                                 width={100}
                                 height={100}
-                                priority
-                              />
+                              >
+                              </img>
                             </div>
                           </div>
                           <div className="flex-grow-1">
@@ -203,16 +207,21 @@ const Navbar = ({ contenido }) => {
             </div>
           </nav>
 
-          <div className="content-wrapper">
+          <div className="content-wrapper" style={{maxHeight:'calc(100vh - 100px)'}}>
 
-            <div className="container-xxl flex-grow-1 container-p-y">
+            <div className="container-xxl flex-grow-1 container-p-y" style={{height:'100%'}}>
               {contenido}
             </div>
           </div>
+          <p id="pFooter" style={{textAlign:'center',paddingTop:'10px'}}>
+            By. Tres Son Uno
+          </p>
         </div>
       </div>
       <div className="layout-overlay layout-menu-toggle"></div>
     </div>
+    
+    </>
   )
 }
 

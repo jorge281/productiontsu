@@ -1,0 +1,87 @@
+.collapse {
+    visibility: visible !important;
+}
+
+.hidden{
+    display: none;
+}
+
+.nextjs-toast-errors-parent{
+    display: none !important;
+}
+
+
+.disabled-label {
+    pointer-events: none;
+    opacity: 0.5;
+}
+
+
+.form-control{
+    border-radius: 0px;
+    padding: 5px 10px;
+}
+
+.btn{
+    border-radius: 0px;
+}
+
+.fileCompro>label{
+    margin: auto;
+}
+
+.containerP{
+    padding: 0px !important;
+}
+
+.container-xxl{
+    width: 100%;
+    height: 100%;
+    padding-top: 0px !important;
+    padding-bottom: 0px !important;
+    background: #eeeeee;
+}
+
+#pFooter{
+    display: none;
+}
+
+.content-wrapper{
+    max-width: 100vw !important;
+    max-height: 100vh !important;
+    background: #eeeeee !important;
+}
+
+.layout-page{
+    width: 100vw;
+    height: 100vh;
+}
+
+.layout-container{
+    width: 100vw;
+    height: 100vh;
+}
+
+.layout-wrapper{
+    width: 100vw;
+    height: 100vh;
+}
+
+#content{
+    width: 100vw;
+    height: 100vh;
+}
+
+/* Para navegadores Webkit (Chrome, Safari, Edge) */
+input[type='number']::-webkit-inner-spin-button,
+input[type='number']::-webkit-outer-spin-button {
+  -webkit-appearance: none;
+  margin: 0;
+}
+
+
+
+/* Para Firefox */
+input[type='number'] {
+  -moz-appearance: textfield;
+}

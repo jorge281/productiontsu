@@ -1,0 +1,55 @@
+ul.timeline {
+    list-style-type: none;
+    position: relative;
+}
+ul.timeline:before {
+    content: ' ';
+    background: #d4d9df;
+    display: inline-block;
+    position: absolute;
+    left: 29px;
+    width: 2px;
+    height: 100%;
+    z-index: 400;
+}
+ul.timeline > li {
+    margin: 20px 0;
+    padding-left: 20px;
+}
+ul.timeline > li:before {
+    content: ' ';
+    background: #e9e9e9;
+    display: inline-block;
+    position: absolute;
+    border-radius: 50%;
+    border: 3px solid #566a7f;
+    left: 20px;
+    width: 20px;
+    height: 20px;
+    z-index: 400;
+}
+
+ul.timeline > .novedadSinSolucion:before {
+    background: #ff9d9d;
+}
+
+ul.timeline > .novedadPendiente:before {
+    background: #dbd86c;
+}
+
+ul.timeline > .novedadSolucionada:before {
+    background: #9dff9d;
+}
+
+
+.table-wrapper {
+    max-height: 63vh; /* Altura máxima de la tabla */
+    overflow-y: auto; /* Añadir scroll vertical */
+}
+
+.table thead th {
+    position: sticky;
+    top: 0;
+    background-color: #e9e9e9; /* Fondo blanco para la cabecera */
+    z-index: 10; /* Asegurar que la cabecera esté sobre el contenido */
+}
